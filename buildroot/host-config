@@ -1,0 +1,18 @@
+#!/bin/bash
+
+if [ $# -ne 1 ]; then
+  echo "invalid arguments"
+  exit 1
+fi
+
+ip=$1
+network="custom-scripts/S41network-config"
+
+if [ ! -f $network ]; then
+  echo "$network does not exist"
+  exit 1
+fi
+
+sed -i "s/<HOST-IP>/$ip/g" $network
+
+echo "host ip config done"
